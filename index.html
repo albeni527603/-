@@ -1,0 +1,1320 @@
+ئالەم كۆزى
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ئالەم كۆزى</title>
+    
+    <!-- ===== 网络字体 ===== -->
+    <!-- Noto Sans Arabic - 支持维吾尔文/阿拉伯文 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- 备用：如果 Google Fonts 无法访问，使用本地 fallback -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* 字体栈：优先使用网络字体，失败则回退到系统字体 */
+            font-family: 'Noto Sans Arabic', 'Noto Sans SC', 'Segoe UI', -apple-system, Roboto, Arial, sans-serif;
+        }
+
+        :root {
+            --bg-primary: #1e1e2f;
+            --bg-secondary: #2d2d44;
+            --bg-card: #3a3a55;
+            --bg-list: #1e1e32;
+            --bg-item: #282843;
+            --bg-item-hover: #323252;
+            --text-primary: #f0f4ff;
+            --text-secondary: #b9c7e0;
+            --text-muted: #6f7b9a;
+            --green: #27ae60;
+            --green-hover: #2ecc71;
+            --red: #e74c3c;
+            --red-hover: #ff6b5a;
+            --blue: #2d7fc1;
+            --blue-hover: #3b97e6;
+            --orange: #e67e22;
+            --orange-hover: #f39c12;
+            --border-color: #4a4a6a;
+            --radius: 0px;
+            --radius-sm: 8px;
+            --shadow: none;
+            /* 字体变量 */
+            --font-arabic: 'Noto Sans Arabic', 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            min-height: 100vh;
+            min-width: 100vw;
+            background: var(--bg-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            font-family: var(--font-arabic);
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            min-height: 100vh;
+            min-width: 100vw;
+            background: var(--bg-secondary);
+            border-radius: 0;
+            padding: clamp(6px, 1.5vh, 14px) clamp(8px, 2vw, 18px) clamp(6px, 1.2vh, 12px);
+            box-shadow: none;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            transition: none;
+        }
+
+        h1 {
+            font-size: clamp(1rem, 3.5vw, 1.6rem);
+            font-weight: 700;
+            text-align: center;
+            color: #6fcf97;
+            letter-spacing: 0.3px;
+            margin-bottom: clamp(3px, 0.8vh, 8px);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+            padding: 0 2px;
+            font-family: var(--font-arabic);
+        }
+
+        .tab-bar {
+            display: flex;
+            gap: 3px;
+            background: var(--bg-list);
+            border-radius: var(--radius-sm);
+            padding: 3px;
+            flex-shrink: 0;
+            margin-bottom: clamp(4px, 1vh, 10px);
+        }
+        .tab-btn {
+            flex: 1;
+            padding: clamp(5px, 0.8vh, 9px) clamp(6px, 1.2vw, 14px);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: clamp(0.65rem, 1.4vw, 0.85rem);
+            color: var(--text-secondary);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            touch-action: manipulation;
+            white-space: nowrap;
+            font-family: var(--font-arabic);
+        }
+        .tab-btn.active {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .tab-btn:active { transform: scale(0.95); }
+        .tab-btn .tab-badge {
+            background: var(--green);
+            color: white;
+            border-radius: 30px;
+            padding: 0 6px;
+            font-size: 0.6rem;
+            margin-left: 3px;
+        }
+
+        .country-area {
+            display: flex;
+            align-items: center;
+            gap: clamp(3px, 0.8vw, 10px);
+            flex-wrap: nowrap;
+            margin-bottom: clamp(3px, 0.8vh, 8px);
+            background: var(--bg-card);
+            padding: clamp(2px, 0.5vh, 6px) clamp(8px, 1.5vw, 14px);
+            border-radius: 30px;
+            flex-shrink: 0;
+            min-height: 32px;
+        }
+        .country-area label {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: clamp(0.6rem, 1.3vw, 0.8rem);
+            white-space: nowrap;
+            flex-shrink: 0;
+            font-family: var(--font-arabic);
+        }
+        .country-area select {
+            flex: 1;
+            min-width: 60px;
+            background: #25253b;
+            color: var(--text-primary);
+            border: 1px solid #5b5b7e;
+            border-radius: 30px;
+            padding: clamp(3px, 0.5vh, 6px) clamp(8px, 1.5vw, 14px);
+            font-size: clamp(0.6rem, 1.3vw, 0.8rem);
+            font-weight: 500;
+            outline: none;
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23b9c7e0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            padding-right: 26px;
+            font-family: var(--font-arabic);
+        }
+        .country-area select option {
+            background: #1e1e32;
+            color: #f0f4ff;
+            font-family: var(--font-arabic);
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: clamp(3px, 0.8vw, 8px);
+            margin-bottom: clamp(3px, 0.8vh, 8px);
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .btn {
+            flex: 1 1 auto;
+            min-width: clamp(44px, 12vw, 90px);
+            padding: clamp(4px, 0.8vh, 8px) clamp(6px, 1.2vw, 14px);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: clamp(0.6rem, 1.3vw, 0.8rem);
+            color: white;
+            background: #4a4a6e;
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            white-space: nowrap;
+            font-family: var(--font-arabic);
+        }
+        .btn:active { transform: scale(0.94); }
+        .btn-start { background: var(--green); }
+        .btn-start:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+        .btn-stop { background: var(--red); }
+        .btn-stop:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+        .btn-copy { background: var(--blue); }
+        .btn-export { background: var(--orange); }
+        .btn-export:active { background: var(--orange-hover); }
+        .btn-danger { background: #8b2a2a; }
+        .btn-danger:active { background: #aa3333; }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin: clamp(1px, 0.3vh, 4px) 0 clamp(2px, 0.5vh, 5px);
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 0 3px;
+            flex-shrink: 0;
+            flex-wrap: wrap;
+            gap: 2px;
+        }
+        .results-header .label {
+            font-size: clamp(0.6rem, 1.3vw, 0.8rem);
+            font-family: var(--font-arabic);
+        }
+        .results-header .badge {
+            background: #3b3b5a;
+            padding: 0px 10px;
+            border-radius: 30px;
+            font-size: clamp(0.55rem, 1.1vw, 0.7rem);
+            color: #a5b9d9;
+            font-family: var(--font-arabic);
+        }
+
+        .tab-content {
+            flex: 1;
+            display: none;
+            flex-direction: column;
+            min-height: 0;
+        }
+        .tab-content.active { display: flex; }
+
+        .list-container {
+            flex: 1;
+            min-height: 40px;
+            background: var(--bg-list);
+            border-radius: var(--radius-sm);
+            padding: 3px 0;
+            overflow-y: auto;
+            border: 1px solid #424266;
+            box-shadow: inset 0 4px 16px rgba(0, 0, 0, 0.5);
+            -webkit-overflow-scrolling: touch;
+        }
+        .list-container ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .list-container li {
+            padding: clamp(4px, 0.8vh, 8px) clamp(8px, 1.5vw, 16px);
+            margin: 2px clamp(3px, 0.8vw, 8px);
+            background: var(--bg-item);
+            border-radius: 18px;
+            color: #d6e2ff;
+            font-size: clamp(0.65rem, 1.3vw, 0.85rem);
+            font-weight: 450;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 4px;
+            border-left: 3px solid #3f7fb0;
+            transition: 0.1s;
+            word-break: break-all;
+            cursor: default;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+            touch-action: manipulation;
+            min-height: 32px;
+            font-family: var(--font-arabic);
+        }
+        .list-container li:active {
+            background: var(--bg-item-hover);
+            transform: scale(0.98);
+        }
+        .list-container li .ip-text {
+            flex: 1;
+            min-width: 0;
+            overflow-wrap: break-word;
+            word-break: break-all;
+            font-family: var(--font-mono);
+            font-size: clamp(0.6rem, 1.2vw, 0.8rem);
+            direction: ltr;
+            text-align: left;
+        }
+        .list-container li .item-actions {
+            display: flex;
+            gap: 3px;
+            flex-shrink: 0;
+            align-items: center;
+        }
+        .list-container li .action-btn {
+            background: #3b3b5e;
+            border: 1px solid #57577a;
+            border-radius: 20px;
+            padding: clamp(1px, 0.3vh, 3px) clamp(5px, 0.8vw, 10px);
+            font-size: clamp(0.5rem, 1vw, 0.65rem);
+            color: #b0c7f0;
+            cursor: pointer;
+            transition: 0.1s;
+            touch-action: manipulation;
+            white-space: nowrap;
+            font-family: var(--font-arabic);
+        }
+        .list-container li .action-btn:active { transform: scale(0.9); }
+        .list-container li .action-btn.open-btn {
+            background: #1a4a3a;
+            border-color: #2a7a5a;
+        }
+        .list-container li .action-btn.open-btn:active { background: #2a7a5a; }
+        .list-container li .action-btn.save-btn {
+            background: #4a3a1a;
+            border-color: #8a7a2a;
+        }
+        .list-container li .action-btn.save-btn:active { background: #8a7a2a; }
+        .list-container li .action-btn.delete-btn {
+            background: #4a1a1a;
+            border-color: #7a2a2a;
+        }
+        .list-container li .action-btn.delete-btn:active { background: #7a2a2a; }
+        .list-container li .item-name {
+            color: #6fcf97;
+            font-size: clamp(0.5rem, 1vw, 0.65rem);
+            margin-right: 3px;
+            background: #1a3a2a;
+            padding: 0px 6px;
+            border-radius: 16px;
+            white-space: nowrap;
+            max-width: 60px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-shrink: 0;
+            font-family: var(--font-arabic);
+        }
+
+        .empty-state {
+            color: #5a6a8a;
+            text-align: center;
+            padding: 20px 12px;
+            font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+            user-select: none;
+            border-left: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            min-height: 60px;
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-arabic);
+        }
+
+        .footer {
+            margin-top: clamp(3px, 0.6vh, 8px);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: clamp(0.5rem, 1vw, 0.65rem);
+            border-top: 1px solid #3d3d5c;
+            padding-top: clamp(3px, 0.5vh, 8px);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3px 10px;
+            flex-shrink: 0;
+            font-family: var(--font-arabic);
+        }
+        .footer a {
+            color: #8ba0cf;
+            text-decoration: none;
+            touch-action: manipulation;
+            font-family: var(--font-arabic);
+        }
+
+        .toast-message {
+            position: fixed;
+            bottom: clamp(4px, 1vh, 16px);
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 16px);
+            max-width: 480px;
+            background: #2c2c4a;
+            color: #d0dcff;
+            padding: clamp(4px, 0.8vh, 10px) clamp(12px, 2vw, 20px);
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: clamp(0.65rem, 1.3vw, 0.85rem);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+            border: 1px solid #6f8fc0;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            pointer-events: none;
+            z-index: 999;
+            text-align: center;
+            line-height: 1.3;
+            font-family: var(--font-arabic);
+        }
+        .toast-message.show { opacity: 1; }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 16px;
+        }
+        .modal-overlay.show { display: flex; }
+        .modal-box {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: clamp(16px, 3vh, 28px) clamp(20px, 4vw, 36px);
+            max-width: 380px;
+            width: 100%;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+        }
+        .modal-box h3 {
+            color: var(--text-primary);
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            margin-bottom: 10px;
+            text-align: center;
+            font-family: var(--font-arabic);
+        }
+        .modal-box p {
+            color: var(--text-secondary);
+            font-size: clamp(0.7rem, 1.4vw, 0.85rem);
+            margin-bottom: 6px;
+            word-break: break-all;
+            text-align: center;
+            font-family: var(--font-arabic);
+        }
+        .modal-box input {
+            width: 100%;
+            padding: clamp(6px, 1vh, 10px) clamp(10px, 1.8vw, 14px);
+            border-radius: 30px;
+            border: 1px solid #5b5b7e;
+            background: #25253b;
+            color: var(--text-primary);
+            font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+            outline: none;
+            margin: 6px 0 14px;
+            font-family: var(--font-arabic);
+        }
+        .modal-box input:focus {
+            border-color: #6fcf97;
+            box-shadow: 0 0 0 2px #6fcf9740;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+        .modal-actions .btn {
+            min-width: 60px;
+            padding: clamp(6px, 1vh, 10px) clamp(14px, 2vw, 20px);
+            flex: 0 1 auto;
+        }
+        .modal-actions .btn-confirm { background: var(--green); }
+        .modal-actions .btn-confirm:active { background: var(--green-hover); }
+        .modal-actions .btn-cancel-modal { background: #4a4a6e; }
+        .modal-actions .btn-cancel-modal:active { background: #5a5a82; }
+
+        .list-container::-webkit-scrollbar {
+            width: 3px;
+            background: #25253b;
+            border-radius: 3px;
+        }
+        .list-container::-webkit-scrollbar-thumb {
+            background: #5a5a82;
+            border-radius: 4px;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid #ffffff30;
+            border-top: 2px solid #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            flex-shrink: 0;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== 字体加载状态 ===== */
+        .fonts-loading {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .fonts-loaded {
+            opacity: 1;
+        }
+
+        @media (min-width: 768px) {
+            .container { padding: 16px 24px 14px; }
+            .list-container { min-height: 120px; }
+            .list-container li:hover {
+                background: var(--bg-item-hover);
+                border-left-color: #6fcf97;
+            }
+            .list-container li .action-btn:hover {
+                background: #4e4e7a;
+                color: white;
+            }
+            .list-container li .action-btn.open-btn:hover { background: #2a7a5a; }
+            .list-container li .action-btn.save-btn:hover { background: #8a7a2a; }
+            .list-container li .action-btn.delete-btn:hover { background: #7a2a2a; }
+            .btn:hover { transform: translateY(-1px); }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 4px 4px 4px; }
+            h1 { font-size: 0.95rem; margin-bottom: 2px; }
+            .tab-bar { border-radius: 5px; padding: 2px; gap: 2px; }
+            .tab-btn { font-size: 0.55rem; padding: 3px 4px; border-radius: 4px; }
+            .country-area {
+                border-radius: 16px;
+                padding: 2px 6px 2px 8px;
+                margin-bottom: 3px;
+                min-height: 26px;
+                gap: 2px;
+            }
+            .country-area select {
+                padding: 2px 20px 2px 6px;
+                font-size: 0.55rem;
+                min-width: 50px;
+                background-position: right 5px center;
+                background-size: 7px 4px;
+                border-radius: 16px;
+            }
+            .country-area label { font-size: 0.55rem; }
+            .btn {
+                min-width: 36px;
+                padding: 3px 4px;
+                font-size: 0.5rem;
+                border-radius: 16px;
+                gap: 2px;
+            }
+            .btn-group { gap: 2px; margin-bottom: 2px; }
+            .results-header { margin: 1px 0 2px; }
+            .results-header .label { font-size: 0.55rem; }
+            .results-header .badge { font-size: 0.5rem; padding: 0px 6px; }
+            .list-container {
+                min-height: 30px;
+                border-radius: 5px;
+                padding: 2px 0;
+            }
+            .list-container li {
+                padding: 3px 6px;
+                margin: 1px 2px;
+                border-radius: 12px;
+                font-size: 0.55rem;
+                border-left-width: 2px;
+                gap: 3px;
+                min-height: 26px;
+            }
+            .list-container li .ip-text { font-size: 0.5rem; }
+            .list-container li .item-actions { gap: 2px; }
+            .list-container li .action-btn {
+                padding: 1px 4px;
+                font-size: 0.45rem;
+                border-radius: 12px;
+            }
+            .list-container li .item-name {
+                font-size: 0.45rem;
+                padding: 0px 4px;
+                max-width: 40px;
+            }
+            .footer {
+                font-size: 0.45rem;
+                margin-top: 2px;
+                padding-top: 2px;
+                border-top-width: 1px;
+            }
+            .toast-message {
+                width: calc(100% - 10px);
+                padding: 3px 10px;
+                font-size: 0.55rem;
+                bottom: 3px;
+                border-radius: 16px;
+            }
+            .empty-state {
+                padding: 10px 8px;
+                font-size: 0.6rem;
+                min-height: 40px;
+            }
+            .modal-box { padding: 14px 16px; }
+            .modal-box h3 { font-size: 0.85rem; }
+            .modal-box p { font-size: 0.7rem; }
+            .modal-box input { font-size: 0.7rem; padding: 5px 10px; }
+            .modal-actions .btn { min-width: 50px; font-size: 0.6rem; padding: 4px 10px; }
+        }
+
+        @media (max-width: 800px) and (orientation: landscape) {
+            .container { padding: 4px 10px 4px; }
+            h1 { font-size: 0.85rem; margin-bottom: 2px; }
+            .list-container { min-height: 30px; }
+            .list-container li { padding: 2px 8px; margin: 1px 3px; font-size: 0.55rem; min-height: 22px; }
+            .btn { padding: 2px 6px; font-size: 0.5rem; min-width: 32px; }
+            .country-area { padding: 1px 6px; margin-bottom: 2px; min-height: 22px; }
+            .country-area select { font-size: 0.5rem; padding: 1px 16px 1px 4px; }
+            .country-area label { font-size: 0.5rem; }
+            .tab-btn { font-size: 0.5rem; padding: 2px 4px; }
+            .footer { font-size: 0.4rem; margin-top: 1px; padding-top: 1px; }
+            .list-container li .action-btn { font-size: 0.4rem; padding: 0px 3px; }
+            .list-container li .ip-text { font-size: 0.45rem; }
+        }
+
+        @media (max-width: 360px) {
+            .tab-btn { font-size: 0.5rem; padding: 2px 3px; }
+            .btn { font-size: 0.45rem; min-width: 30px; padding: 2px 3px; }
+            .list-container li { font-size: 0.5rem; padding: 2px 4px; }
+            .list-container li .ip-text { font-size: 0.45rem; }
+            .list-container li .action-btn { font-size: 0.4rem; padding: 0px 3px; }
+            h1 { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="app">
+        <h1>ئالەم كۆزى</h1>
+
+        <div class="tab-bar">
+            <button class="tab-btn active" data-tab="scan">🔍 سىكانېر</button>
+            <button class="tab-btn" data-tab="saved">⭐ تىزىملىك <span class="tab-badge" id="savedCount">0</span></button>
+        </div>
+
+        <div class="tab-content active" id="tabScan">
+            <div class="country-area">
+                <label for="countrySelect">🇺🇳 دۆلەت</label>
+                <select id="countrySelect"></select>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-start" id="startBtn">▶ باشلاش</button>
+                <button class="btn btn-stop" id="stopBtn" disabled>⏹ توختىتىش</button>
+                <button class="btn btn-copy" id="copyBtn">📋 كۆچۈرۈش</button>
+            </div>
+
+            <div class="results-header">
+                <span class="label">📡 سىكانېر نەتىجىلىرى</span>
+                <span class="badge" id="counterLabel">0</span>
+            </div>
+
+            <div class="list-container" id="resultListContainer">
+                <ul id="resultList">
+                    <li class="empty-state">سىكانېر باشلاش ئۈچۈن دۆلەت تاللاڭ</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tab-content" id="tabSaved">
+            <div class="results-header">
+                <span class="label">⭐ تىزىملىك (ساقلانغان IP)</span>
+                <span class="badge" id="savedCounterLabel">0</span>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-export" id="exportSavedBtn">📤 ھەممىنى كۆچۈر</button>
+                <button class="btn btn-danger" id="clearSavedBtn">🗑 تازىلا</button>
+            </div>
+            <div class="list-container" id="savedListContainer">
+                <ul id="savedList">
+                    <li class="empty-state">ھېچقانداق IP ساقلانمىدى</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <span>© ALFWare · Web</span>
+            <span><a href="#" id="updateTrigger">🔄 يېڭىلانمىلار</a></span>
+        </div>
+    </div>
+
+    <div id="toast" class="toast-message"></div>
+
+    <div class="modal-overlay" id="saveModal">
+        <div class="modal-box">
+            <h3>📝 ئىسمنى كىرگۈزۈڭ</h3>
+            <p id="modalIpDisplay">IP: </p>
+            <input type="text" id="modalNameInput" placeholder="ئىسىم (مەسىلەن: ئۆي كامېراسى)" maxlength="30">
+            <div class="modal-actions">
+                <button class="btn btn-cancel-modal" id="modalCancel">بېكارلاش</button>
+                <button class="btn btn-confirm" id="modalConfirm">✅ ساقلاش</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ===== 国家数据 =====
+            const COUNTRIES = [
+                ["ئامېرىكا", "US"], ["ياپونىيە", "JP"], ["ئىتالىيە", "IT"], ["كورېيە", "KR"],
+                ["فىرانسىيە", "FR"], ["گېرمانىيە", "DE"], ["تەيۋەن", "TW"], ["رۇسىيە", "RU"],
+                ["بۈيۈك برىتانىيە", "GB"], ["گوللاندىيە", "NL"], ["چېخ", "CZ"],
+                ["تۈركىيە", "TR"], ["ئاۋسترىيە", "AT"], ["شۋېتسارىيە", "CH"], ["ئىسپانىيە", "ES"],
+                ["كانادا", "CA"], ["شۋېتسىيە", "SE"], ["ئىسرائىل", "IL"], ["پولشا", "PL"],
+                ["ئىران", "IR"], ["نورۋېگىيە", "NO"], ["رۇمىنىيە", "RO"], ["ھىندىستان", "IN"],
+                ["ۋيېتنام", "VN"], ["بېلگىيە", "BE"], ["بىرازىلىيە", "BR"], ["بۇلغارىيە", "BG"],
+                ["ھىندونېزىيە", "ID"], ["دانىيە", "DK"], ["ئارگېنتىنا", "AR"], ["مېكسىكا", "MX"],
+                ["فىنلاندىيە", "FI"], ["جۇڭگو", "CN"], ["چىلى", "CL"], ["جەنۇبىي ئافرىقا", "ZA"],
+                ["سىلوۋاكىيە", "SK"], ["ۋېنگىرىيە", "HU"], ["ئىرلاندىيە", "IE"], ["مىسىر", "EG"],
+                ["تايلاند", "TH"], ["ئۇكرائىنا", "UA"], ["سېربىيە", "RS"], ["شياڭگاڭ", "HK"],
+                ["گىرېتسىيە", "GR"], ["پورتۇگالىيە", "PT"], ["لاتۋىيە", "LV"], ["سىنگاپور", "SG"],
+                ["ئىسلاندىيە", "IS"], ["مالايسىيا", "MY"], ["كولومبىيە", "CO"], ["تۇنىس", "TN"],
+                ["ئېستونىيە", "EE"], ["دومىنىكا", "DO"], ["سىلوۋېنىيە", "SI"],
+                ["ئېكۋادور", "EC"], ["لىتۋا", "LT"], ["پەلەستىن", "PS"], ["يېڭى زېلاندىيە", "NZ"],
+                ["باڭلادىش", "BD"], ["پاناما", "PA"], ["مولدوۋا", "MD"], ["نىكاراگۇئا", "NI"],
+                ["مالتا", "MT"], ["ترىنىداد", "TT"], ["سەئۇدى ئەرەبىستان", "SA"],
+                ["كىرودىيە", "HR"], ["سىپرۇس", "CY"], ["پاكىستان", "PK"], ["ئەرەب بىرلەشمە خەلىپىلىكى", "AE"],
+                ["قازاقىستان", "KZ"], ["كۇۋەيت", "KW"], ["ۋېنېزۇئېلا", "VE"], ["گىرۇزىيە", "GE"],
+                ["مونتېنېگرو", "ME"], ["ئېل سالۋادور", "SV"], ["لىيۇكسېمبۇرگ", "LU"], ["كۇراساو", "CW"],
+                ["پۇئېرتو رىكو", "PR"], ["كوستارىكا", "CR"], ["بېلارۇسىيە", "BY"], ["ئالبانىيە", "AL"],
+                ["لىيېختېنشتېين", "LI"], ["بوسنىيە", "BA"], ["پاراگۋاي", "PY"],
+                ["فىلىپپىن", "PH"], ["فارو ئاراللىرى", "FO"], ["گۋاتېمالا", "GT"], ["نېپال", "NP"],
+                ["پېرۇ", "PE"], ["ئۇرۇگۋاي", "UY"], ["ئاندوررا", "AD"], ["ئانتىگۇئا", "AG"],
+                ["ئەرمېنىيە", "AM"], ["ئانگولا", "AO"], ["ئاۋسترالىيە", "AU"], ["ئارۇبا", "AW"],
+                ["ئەزەربەيجان", "AZ"], ["باربادوس", "BB"], ["بوناير", "BQ"], ["باھاما", "BS"],
+                ["بوتسۋانا", "BW"], ["كونگو", "CG"], ["پىل سۆڭىكى قىرغىقى", "CI"], ["ئالجىرى", "DZ"],
+                ["فىجى", "FJ"], ["گابون", "GA"], ["گېرنسی", "GG"], ["گىرېنلاند", "GL"],
+                ["گۋادېلۇپ", "GP"], ["گۇئام", "GU"], ["گىئانا", "GY"], ["ھوندۇراس", "HN"],
+                ["جېرسى", "JE"], ["يامايكا", "JM"], ["ئىئوردانىيە", "JO"], ["كېنىيە", "KE"],
+                ["كامبودژا", "KH"], ["ساينت كىتتس", "KN"], ["كايمان ئاراللىرى", "KY"], ["لائوس", "LA"],
+                ["لىۋان", "LB"], ["سىرىلانكا", "LK"], ["ماراكەش", "MA"], ["ماداغاسكار", "MG"],
+                ["ماكېدونىيە", "MK"], ["موڭغۇلىيە", "MN"], ["ماكائو", "MO"], ["مارتىنىكا", "MQ"],
+                ["ماۋرىتىئۇس", "MU"], ["نامىبىيە", "NA"], ["يېڭى كالېدونىيە", "NC"], ["نىگېرىيە", "NG"],
+                ["قاتار", "QA"], ["رېئونىيون", "RE"], ["سۇدان", "SD"], ["سېنېگال", "SN"],
+                ["سۇرىنام", "SR"], ["سان تومې", "ST"], ["سۇرىيە", "SY"],
+                ["تانزانىيە", "TZ"], ["ئۇگاندا", "UG"], ["ئۆزبېكىستان", "UZ"], ["ساينت ۋىنسېنت", "VC"],
+                ["بېنىن", "BJ"]
+            ];
+
+            // ===== DOM =====
+            const countrySelect = document.getElementById('countrySelect');
+            const startBtn = document.getElementById('startBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const resultList = document.getElementById('resultList');
+            const savedList = document.getElementById('savedList');
+            const counterLabel = document.getElementById('counterLabel');
+            const savedCounterLabel = document.getElementById('savedCounterLabel');
+            const savedCountBadge = document.getElementById('savedCount');
+            const toast = document.getElementById('toast');
+            const resultContainer = document.getElementById('resultListContainer');
+
+            const saveModal = document.getElementById('saveModal');
+            const modalIpDisplay = document.getElementById('modalIpDisplay');
+            const modalNameInput = document.getElementById('modalNameInput');
+            const modalConfirm = document.getElementById('modalConfirm');
+            const modalCancel = document.getElementById('modalCancel');
+
+            const exportSavedBtn = document.getElementById('exportSavedBtn');
+            const clearSavedBtn = document.getElementById('clearSavedBtn');
+
+            // ===== 代理 =====
+            const PROXIES = [
+                'https://api.allorigins.win/raw?url=',
+                'https://corsproxy.io/?',
+                'https://api.codetabs.com/v1/proxy?quest='
+            ];
+
+            // ===== 状态 =====
+            let isRunning = false;
+            let abortController = null;
+            let foundCount = 0;
+            let savedItems = [];
+            let cachedResults = [];
+
+            // ===== 初始化国家 =====
+            COUNTRIES.forEach(([name, code]) => {
+                const opt = document.createElement('option');
+                opt.value = code;
+                opt.textContent = name;
+                countrySelect.appendChild(opt);
+            });
+            countrySelect.value = 'US';
+
+            // ===== 加载保存的数据 =====
+            function loadSaved() {
+                try {
+                    const data = localStorage.getItem('cctv_saved');
+                    if (data) {
+                        savedItems = JSON.parse(data);
+                    }
+                } catch (e) { savedItems = []; }
+                renderSaved();
+            }
+
+            function saveToStorage() {
+                try {
+                    localStorage.setItem('cctv_saved', JSON.stringify(savedItems));
+                } catch (e) {}
+                renderSaved();
+            }
+
+            function renderSaved() {
+                savedList.innerHTML = '';
+                if (savedItems.length === 0) {
+                    const li = document.createElement('li');
+                    li.className = 'empty-state';
+                    li.textContent = 'ھېچقانداق IP ساقلانمىدى';
+                    savedList.appendChild(li);
+                } else {
+                    savedItems.forEach((item, index) => {
+                        const li = document.createElement('li');
+                        const nameSpan = document.createElement('span');
+                        nameSpan.className = 'item-name';
+                        nameSpan.textContent = item.name || 'نامسىز';
+                        li.appendChild(nameSpan);
+
+                        const ipSpan = document.createElement('span');
+                        ipSpan.className = 'ip-text';
+                        ipSpan.textContent = item.ip;
+                        li.appendChild(ipSpan);
+
+                        const actions = document.createElement('div');
+                        actions.className = 'item-actions';
+
+                        const openBtn = document.createElement('span');
+                        openBtn.className = 'action-btn open-btn';
+                        openBtn.textContent = '🔗 ئېچىش';
+                        openBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            window.open(item.ip, '_blank', 'noopener,noreferrer');
+                        });
+                        actions.appendChild(openBtn);
+
+                        const delBtn = document.createElement('span');
+                        delBtn.className = 'action-btn delete-btn';
+                        delBtn.textContent = '🗑 ئۆچۈر';
+                        delBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            if (confirm(`"${item.name || item.ip}" نى ئۆچۈرەمسىز؟`)) {
+                                savedItems.splice(index, 1);
+                                saveToStorage();
+                                showToast('ئۆچۈرۈلدى', 1200);
+                            }
+                        });
+                        actions.appendChild(delBtn);
+
+                        li.appendChild(actions);
+                        savedList.appendChild(li);
+                    });
+                }
+                const count = savedItems.length;
+                savedCounterLabel.textContent = count;
+                savedCountBadge.textContent = count;
+            }
+
+            function saveIp(ip, name) {
+                if (savedItems.some(item => item.ip === ip)) {
+                    showToast('بۇ IP ئاللىبۇرۇن ساقلانغان', 1500);
+                    return false;
+                }
+                savedItems.push({
+                    id: Date.now(),
+                    ip: ip,
+                    name: name || 'نامسىز',
+                    date: new Date().toLocaleString()
+                });
+                saveToStorage();
+                showToast(`✅ ساقلاندى: ${name || ip}`, 1500);
+                return true;
+            }
+
+            let pendingSaveIp = null;
+
+            function showSaveModal(ip) {
+                pendingSaveIp = ip;
+                modalIpDisplay.textContent = `IP: ${ip}`;
+                modalNameInput.value = '';
+                modalNameInput.placeholder = 'ئىسىم (مەسىلەن: ئۆي كامېراسى)';
+                saveModal.classList.add('show');
+                setTimeout(() => modalNameInput.focus(), 200);
+            }
+
+            modalConfirm.addEventListener('click', () => {
+                const name = modalNameInput.value.trim() || 'نامسىز';
+                if (pendingSaveIp) {
+                    saveIp(pendingSaveIp, name);
+                    pendingSaveIp = null;
+                }
+                saveModal.classList.remove('show');
+            });
+
+            modalCancel.addEventListener('click', () => {
+                pendingSaveIp = null;
+                saveModal.classList.remove('show');
+            });
+
+            saveModal.addEventListener('click', (e) => {
+                if (e.target === saveModal) {
+                    pendingSaveIp = null;
+                    saveModal.classList.remove('show');
+                }
+            });
+
+            modalNameInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') modalConfirm.click();
+                if (e.key === 'Escape') modalCancel.click();
+            });
+
+            function showToast(msg, duration = 2500) {
+                toast.textContent = msg;
+                toast.classList.add('show');
+                clearTimeout(toast._hide);
+                toast._hide = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, duration);
+            }
+
+            function copyToClipboard(text, successMsg) {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        showToast(successMsg || 'كۆچۈرۈلدى', 1200);
+                    }).catch(() => fallbackCopy(text, successMsg));
+                } else {
+                    fallbackCopy(text, successMsg);
+                }
+            }
+
+            function fallbackCopy(text, successMsg) {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                ta.style.left = '-9999px';
+                ta.style.top = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                try {
+                    document.execCommand('copy');
+                    showToast(successMsg || 'كۆچۈرۈلدى', 1200);
+                } catch (e) {
+                    showToast('كۆچۈرۈش مەغلۇب بولدى', 1500);
+                }
+                ta.remove();
+            }
+
+            async function proxyFetch(url) {
+                for (let i = 0; i < PROXIES.length; i++) {
+                    const proxy = PROXIES[i];
+                    const proxyUrl = proxy + encodeURIComponent(url);
+                    try {
+                        const response = await fetch(proxyUrl, {
+                            signal: abortController ? abortController.signal : undefined,
+                            headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' }
+                        });
+                        if (response.ok) return response;
+                    } catch (e) { console.warn(`代理 ${i+1} 失败:`, e.message); }
+                }
+                const directRes = await fetch(url, {
+                    signal: abortController ? abortController.signal : undefined,
+                    headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' }
+                });
+                if (!directRes.ok) throw new Error(`HTTP ${directRes.status}`);
+                return directRes;
+            }
+
+            function addScanItem(ip) {
+                if (!cachedResults.includes(ip)) {
+                    cachedResults.push(ip);
+                }
+
+                const empty = resultList.querySelector('.empty-state');
+                if (empty) empty.remove();
+
+                const li = document.createElement('li');
+                const span = document.createElement('span');
+                span.className = 'ip-text';
+                span.textContent = ip;
+                li.appendChild(span);
+
+                const actions = document.createElement('div');
+                actions.className = 'item-actions';
+
+                const openBtn = document.createElement('span');
+                openBtn.className = 'action-btn open-btn';
+                openBtn.textContent = '🔗 ئېچىش';
+                openBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    window.open(ip, '_blank', 'noopener,noreferrer');
+                });
+                actions.appendChild(openBtn);
+
+                const saveBtn = document.createElement('span');
+                saveBtn.className = 'action-btn save-btn';
+                saveBtn.textContent = '⭐ ساقلاش';
+                saveBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    showSaveModal(ip);
+                });
+                actions.appendChild(saveBtn);
+
+                li.appendChild(actions);
+                resultList.appendChild(li);
+                updateCounter();
+                resultContainer.scrollTop = resultContainer.scrollHeight;
+            }
+
+            function updateCounter() {
+                const count = resultList.querySelectorAll('li:not(.empty-state)').length;
+                counterLabel.textContent = count;
+            }
+
+            function showEmptyState(show, msg) {
+                let empty = resultList.querySelector('.empty-state');
+                if (show) {
+                    if (!empty) {
+                        const li = document.createElement('li');
+                        li.className = 'empty-state';
+                        li.textContent = msg || 'سىكانېر باشلاش ئۈچۈن دۆلەت تاللاڭ';
+                        resultList.appendChild(li);
+                    } else {
+                        empty.textContent = msg || 'سىكانېر باشلاش ئۈچۈن دۆلەت تاللاڭ';
+                    }
+                } else {
+                    if (empty) empty.remove();
+                }
+            }
+
+            function restoreCachedResults() {
+                if (cachedResults.length > 0) {
+                    resultList.innerHTML = '';
+                    showEmptyState(false);
+                    cachedResults.forEach(ip => {
+                        const li = document.createElement('li');
+                        const span = document.createElement('span');
+                        span.className = 'ip-text';
+                        span.textContent = ip;
+                        li.appendChild(span);
+
+                        const actions = document.createElement('div');
+                        actions.className = 'item-actions';
+
+                        const openBtn = document.createElement('span');
+                        openBtn.className = 'action-btn open-btn';
+                        openBtn.textContent = '🔗 ئېچىش';
+                        openBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            window.open(ip, '_blank', 'noopener,noreferrer');
+                        });
+                        actions.appendChild(openBtn);
+
+                        const saveBtn = document.createElement('span');
+                        saveBtn.className = 'action-btn save-btn';
+                        saveBtn.textContent = '⭐ ساقلاش';
+                        saveBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            showSaveModal(ip);
+                        });
+                        actions.appendChild(saveBtn);
+
+                        li.appendChild(actions);
+                        resultList.appendChild(li);
+                    });
+                    updateCounter();
+                    showToast(`قايتا يۈكلەندى: ${cachedResults.length} پارچە IP`, 1500);
+                }
+            }
+
+            async function runScan(countryCode) {
+                if (abortController) abortController.abort();
+                abortController = new AbortController();
+                const signal = abortController.signal;
+
+                cachedResults = [];
+                resultList.innerHTML = '';
+                showEmptyState(false);
+                updateCounter();
+                foundCount = 0;
+
+                try {
+                    const firstUrl = `http://www.insecam.org/en/bycountry/${countryCode}`;
+                    const firstRes = await proxyFetch(firstUrl);
+                    const html = await firstRes.text();
+
+                    let lastPage = 1;
+                    const match = html.match(/pagenavigator\("\?page=",\s*(\d+)/);
+                    if (match && match[1]) {
+                        lastPage = parseInt(match[1], 10);
+                    } else {
+                        const altMatch = html.match(/pagenavigator\("\?page=", (\d+)/);
+                        if (altMatch && altMatch[1]) lastPage = parseInt(altMatch[1], 10);
+                    }
+                    if (isNaN(lastPage) || lastPage < 1) lastPage = 1;
+
+                    const MAX_PAGES = 30;
+                    if (lastPage > MAX_PAGES) lastPage = MAX_PAGES;
+
+                    showToast(`جەمئىي ${lastPage} بەت تېپىلدى`, 1500);
+
+                    for (let page = 1; page <= lastPage; page++) {
+                        if (signal.aborted) break;
+
+                        const pageUrl = `http://www.insecam.org/en/bycountry/${countryCode}/?page=${page}`;
+                        try {
+                            const pageRes = await proxyFetch(pageUrl);
+                            const pageHtml = await pageRes.text();
+
+                            const ipRegex = /http:\/\/\d+\.\d+\.\d+\.\d+:\d+/g;
+                            let matchIp;
+                            let pageCount = 0;
+                            while ((matchIp = ipRegex.exec(pageHtml)) !== null) {
+                                if (signal.aborted) break;
+                                addScanItem(matchIp[0]);
+                                pageCount++;
+                                foundCount++;
+                            }
+                            if (pageCount > 0) {
+                                showToast(`${page}/${lastPage} بەت · ${pageCount} IP تېپىلدى`, 800);
+                            }
+                        } catch (pageErr) {
+                            if (pageErr.name !== 'AbortError') {
+                                console.warn(`بەت ${page} خاتا:`, pageErr.message);
+                            }
+                        }
+                        await new Promise(r => setTimeout(r, 100));
+                    }
+
+                    if (!signal.aborted) {
+                        if (foundCount === 0) {
+                            showEmptyState(true, 'ھېچقانداق IP تېپىلمىدى');
+                            showToast('ھېچقانداق IP تېپىلمىدى', 2000);
+                        } else {
+                            showToast(`سىكانېر تامام! ${foundCount} پارچە IP تېپىلدى`, 2500);
+                        }
+                    }
+
+                } catch (err) {
+                    if (err.name === 'AbortError') {
+                        if (foundCount === 0) {
+                            showEmptyState(true, 'سىكانېر توختىتىلدى');
+                        }
+                        showToast(`سىكانېر توختىتىلدى (${foundCount} پارچە تېپىلدى)`, 2000);
+                    } else {
+                        console.error('Scan error:', err);
+                        showEmptyState(true, `خاتالىق: ${err.message || 'تور خاتالىقى'}`);
+                        showToast(`خاتالىق: ${err.message || 'تور خاتالىقى'}`, 3000);
+                    }
+                } finally {
+                    abortController = null;
+                    isRunning = false;
+                    startBtn.disabled = false;
+                    stopBtn.disabled = true;
+                    startBtn.innerHTML = '▶ باشلاش';
+                    if (resultList.querySelectorAll('li:not(.empty-state)').length === 0) {
+                        showEmptyState(true, 'سىكانېر تەييار · دۆلەت تاللاڭ');
+                    }
+                }
+            }
+
+            function startScan() {
+                if (isRunning) return;
+                const code = countrySelect.value;
+                if (!code) {
+                    showToast('ئاۋۋال بىر دۆلەت تاللاڭ.', 2000);
+                    return;
+                }
+                resultList.innerHTML = '';
+                showEmptyState(false);
+                updateCounter();
+                foundCount = 0;
+
+                isRunning = true;
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+                startBtn.innerHTML = '<span class="spinner"></span> سىكانېرلانماقتا';
+                runScan(code);
+            }
+
+            function stopScan() {
+                if (abortController) {
+                    abortController.abort();
+                    abortController = null;
+                }
+                isRunning = false;
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+                startBtn.innerHTML = '▶ باشلاش';
+                showToast('سىكانېر توختىتىلدى', 1500);
+            }
+
+            function copyAllResults() {
+                const items = resultList.querySelectorAll('li:not(.empty-state) .ip-text');
+                if (items.length === 0) {
+                    showToast('كۆچۈرۈش ئۈچۈن ھېچقانداق نەتىجە يوق', 1800);
+                    return;
+                }
+                const text = Array.from(items).map(el => el.textContent).join('\n');
+                copyToClipboard(text, `بارلىق نەتىجىلەر كۆچۈرۈلدى (${items.length} پارچە)`);
+            }
+
+            function exportSaved() {
+                if (savedItems.length === 0) {
+                    showToast('ساقلانغان ھېچنېمە يوق', 1500);
+                    return;
+                }
+                const text = savedItems.map(item => `${item.name || 'نامسىز'}: ${item.ip}`).join('\n');
+                copyToClipboard(text, `ساقلانغان ${savedItems.length} پارچە كۆچۈرۈلدى`);
+            }
+
+            function clearSaved() {
+                if (savedItems.length === 0) return;
+                if (confirm('ھەممە ساقلانغان IP لارنى تازىلامسىز؟')) {
+                    savedItems = [];
+                    saveToStorage();
+                    showToast('ھەممىسى تازىلاندى', 1500);
+                }
+            }
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const tab = btn.dataset.tab;
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    document.getElementById(tab === 'scan' ? 'tabScan' : 'tabSaved').classList.add('active');
+                });
+            });
+
+            startBtn.addEventListener('click', startScan);
+            stopBtn.addEventListener('click', stopScan);
+            copyBtn.addEventListener('click', copyAllResults);
+            exportSavedBtn.addEventListener('click', exportSaved);
+            clearSavedBtn.addEventListener('click', clearSaved);
+
+            document.getElementById('updateTrigger').addEventListener('click', (e) => {
+                e.preventDefault();
+                showToast('يېڭىلانمىلار تەكشۈرۈلدى · ھازىرقى نۇسخا ئەڭ يېڭى', 2200);
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                    e.preventDefault();
+                    if (!startBtn.disabled) startScan();
+                }
+                if (e.key === 'Escape' && !stopBtn.disabled) {
+                    stopScan();
+                }
+            });
+
+            // ===== 初始化 =====
+            loadSaved();
+            updateCounter();
+            showEmptyState(true, 'سىكانېر باشلاش ئۈچۈن دۆلەت تاللاڭ');
+            showToast('سىكانېر تەييار · دۆلەت تاللاڭ', 1800);
+
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden && cachedResults.length > 0) {
+                    if (resultList.querySelectorAll('li:not(.empty-state)').length === 0) {
+                        restoreCachedResults();
+                    }
+                }
+            });
+
+            window.addEventListener('beforeunload', () => {
+                try {
+                    sessionStorage.setItem('cctv_cache', JSON.stringify(cachedResults));
+                } catch (e) {}
+            });
+
+            try {
+                const cached = sessionStorage.getItem('cctv_cache');
+                if (cached) {
+                    const parsed = JSON.parse(cached);
+                    if (parsed && parsed.length > 0) {
+                        cachedResults = parsed;
+                        restoreCachedResults();
+                    }
+                }
+            } catch (e) {}
+
+            // ===== 字体加载完成检测 =====
+            document.addEventListener('DOMContentLoaded', () => {
+                document.getElementById('app').classList.add('fonts-loaded');
+            });
+        })();
+    </script>
+</body>
+</html>
